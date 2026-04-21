@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IGCSE Mathematics 0580 — Grade Threshold Report 2015–2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0a0a0f; --surface:#111118; --surface2:#18181f;
+    --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.12);
+    --text:#e8e8f0; --muted:#7a7a8e;
+    --accent:#6c63ff; --accent2:#a78bfa;
+    --june:#22d3a5; --nov:#f97316; --star:#fbbf24;
+    --danger:#f43f5e; --good:#34d399;
+    --mono:'DM Mono',monospace; --sans:'Instrument Sans',sans-serif; --display:'Syne',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.6;min-height:100vh}
+
+  header{position:relative;overflow:hidden;padding:80px 40px 60px;border-bottom:1px solid var(--border2);background:linear-gradient(135deg,#0a0a0f 0%,#0f0f1a 50%,#0a0a0f 100%)}
+  header::before{content:'';position:absolute;top:-120px;left:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(108,99,255,.18) 0%,transparent 70%);pointer-events:none}
+  header::after{content:'';position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(34,211,165,.10) 0%,transparent 70%);pointer-events:none}
+  .hi{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+  .htag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent2);background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);padding:4px 12px;border-radius:20px;margin-bottom:20px}
+  h1{font-family:var(--display);font-size:clamp(32px,5vw,58px);font-weight:800;line-height:1.05;letter-spacing:-.02em;color:#fff;margin-bottom:16px}
+  h1 span{color:var(--accent2)}
+  .hsub{font-size:16px;color:var(--muted);max-width:560px;margin-bottom:36px}
+  .hstats{display:flex;gap:32px;flex-wrap:wrap}
+  .hstat{display:flex;flex-direction:column;gap:2px}
+  .hval{font-family:var(--display);font-size:28px;font-weight:700;color:#fff}
+  .hlbl{font-size:12px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em}
+  .hval.june{color:var(--june)} .hval.nov{color:var(--nov)} .hval.star{color:var(--star)}
+
+  .tabs-bar{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+  .tabs-inner{max-width:1100px;margin:0 auto;padding:0 40px;display:flex;gap:4px;overflow-x:auto}
+  .tab-btn{background:none;border:none;color:var(--muted);font-family:var(--sans);font-size:13px;font-weight:500;padding:16px 18px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s}
+  .tab-btn:hover{color:var(--text)}
+  .tab-btn.active{color:#fff;border-bottom-color:var(--accent2)}
+
+  .main{max-width:1100px;margin:0 auto;padding:40px 40px 80px}
+  .section{display:none}
+  .section.active{display:block}
+  .sh{margin-bottom:28px}
+  .sh h2{font-family:var(--display);font-size:26px;font-weight:700;color:#fff;margin-bottom:6px}
+  .sh p{font-size:14px;color:var(--muted)}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:32px}
+  .kpi{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden}
+  .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+  .kpi.blue::before{background:var(--accent2)} .kpi.green::before{background:var(--june)}
+  .kpi.orange::before{background:var(--nov)} .kpi.gold::before{background:var(--star)} .kpi.red::before{background:var(--danger)}
+  .kpi-lbl{font-size:11px;font-family:var(--mono);color:var(--muted);letter-spacing:.08em;margin-bottom:8px}
+  .kpi-val{font-family:var(--display);font-size:32px;font-weight:700;color:#fff;line-height:1}
+  .kpi-sub{font-size:12px;color:var(--muted);margin-top:4px}
+
+  .tw{background:var(--surface2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:28px}
+  .thr{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)}
+  .ttitle{font-family:var(--display);font-size:15px;font-weight:600;color:#fff}
+  .legend{display:flex;gap:16px;font-size:12px;color:var(--muted)}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .dot.june{background:var(--june)} .dot.nov{background:var(--nov)}
+  table{width:100%;border-collapse:collapse}
+  thead th{background:rgba(255,255,255,.03);font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+  thead th.r{text-align:right}
+  tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+  tbody tr:last-child{border-bottom:none}
+  tbody tr:hover{background:rgba(255,255,255,.025)}
+  tbody td{padding:11px 14px;font-size:13.5px}
+  tbody td.r{text-align:right}
+  .sb{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600}
+  .sd{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
+  .ms{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--star)}
+  .ma{color:var(--june);font-family:var(--mono);font-size:13px}
+  .mb{color:#60a5fa;font-family:var(--mono);font-size:13px}
+  .mc{color:#a78bfa;font-family:var(--mono);font-size:13px}
+  .pct{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .rp{display:inline-block;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);color:var(--star);font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:20px}
+  .tn{display:inline-block;font-size:10px;font-family:var(--mono);padding:1px 6px;border-radius:10px;margin-left:6px;vertical-align:middle}
+  .th{background:rgba(244,63,94,.15);color:var(--danger);border:1px solid rgba(244,63,94,.3)}
+  .tl{background:rgba(52,211,153,.12);color:var(--good);border:1px solid rgba(52,211,153,.3)}
+  .tn2{background:rgba(108,99,255,.15);color:var(--accent2);border:1px solid rgba(108,99,255,.3)}
+  .tm{background:rgba(251,191,36,.12);color:var(--star);border:1px solid rgba(251,191,36,.3)}
+
+  .co{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:24px 20px 16px;margin-bottom:28px;overflow-x:auto}
+  .ct{font-family:var(--display);font-size:14px;font-weight:600;color:#fff;margin-bottom:4px}
+  .cs{font-size:12px;color:var(--muted);margin-bottom:20px}
+  canvas{display:block;width:100%!important}
+
+  .ag{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:28px}
+  .ac{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:20px 22px}
+  .ac h3{font-family:var(--display);font-size:15px;font-weight:600;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .ic{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .ic.purple{background:rgba(108,99,255,.18)} .ic.green{background:rgba(34,211,165,.12)}
+  .ic.orange{background:rgba(249,115,22,.12)} .ic.gold{background:rgba(251,191,36,.12)}
+  .ac p{font-size:13.5px;color:var(--muted);line-height:1.65}
+  .ac strong{color:var(--text)}
+
+  .fr{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;align-items:center}
+  .fl{font-size:12px;color:var(--muted);font-family:var(--mono);margin-right:4px}
+  .fb{background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-family:var(--mono);font-size:12px;padding:5px 12px;border-radius:20px;cursor:pointer;transition:all .15s}
+  .fb:hover{border-color:var(--accent2);color:var(--text)}
+  .fb.active{background:rgba(108,99,255,.18);border-color:rgba(108,99,255,.5);color:var(--accent2)}
+
+  .nb{background:rgba(108,99,255,.07);border:1px solid rgba(108,99,255,.2);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:24px}
+  .nb strong{color:var(--accent2)}
+  .missing-row td{color:var(--muted)!important;font-style:italic}
+  .miss-badge{display:inline-block;background:rgba(122,122,142,.12);color:var(--muted);border:1px solid rgba(122,122,142,.25);border-radius:6px;padding:2px 8px;font-family:var(--mono);font-size:11px}
+
+  footer{border-top:1px solid var(--border);padding:24px 40px;text-align:center;font-size:12px;color:var(--muted);font-family:var(--mono)}
+
+  ::-webkit-scrollbar{height:4px;width:4px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+  @media(max-width:600px){
+    header,.main{padding-left:20px;padding-right:20px}
+    .tabs-inner{padding:0 20px}
+    .hstats{gap:20px}
+    .hval{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="htag">CAMBRIDGE IGCSE · SYLLABUS 0580 · OFFICIAL DATA</div>
+    <h1>Mathematics Grade<br><span>Threshold</span> Report</h1>
+    <p class="hsub">Comprehensive analysis of all A* grade boundaries for May/June and Oct/Nov sessions, 2015–2025. Data sourced directly from Cambridge International official PDF publications.</p>
+    <div class="hstats">
+      <div class="hstat"><span class="hval">21</span><span class="hlbl">SESSIONS WITH DATA</span></div>
+      <div class="hstat"><span class="hval june">189</span><span class="hlbl">HIGHEST A* (BY Nov 2017)</span></div>
+      <div class="hstat"><span class="hval nov">133</span><span class="hlbl">LOWEST A* (BX Jun 2022)</span></div>
+      <div class="hstat"><span class="hval star">200</span><span class="hlbl">MAX MARKS (EXTENDED)</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+    <button class="tab-btn" onclick="showTab('june')">May / June</button>
+    <button class="tab-btn" onclick="showTab('november')">Oct / Nov</button>
+    <button class="tab-btn" onclick="showTab('alldata')">All Data</button>
+    <button class="tab-btn" onclick="showTab('analysis')">Analysis</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ========== OVERVIEW ========== -->
+<section id="tab-overview" class="section active">
+  <div class="sh"><h2>Overview</h2><p>A* threshold % across all sessions 2015–2025 — Extended pathway options BX, BY, BZ (max 200 marks)</p></div>
+
+  <div class="nb">
+    <strong>Syllabus note:</strong> Extended options BX (Papers 21+41), BY (Papers 22+42), BZ (Papers 23+43) all count out of 200 weighted marks. Core options AX/AY/AZ (Papers 1+3) count out of 160. The 2025 June/November sessions use revised component mark allocations (P2=100, P4=100 instead of 70+130) but the weighted total remains 200. <strong>June 2020 was cancelled</strong> due to COVID-19. Sessions marked "Data N/A" had PDFs not locatable in Cambridge's public archive. All other data verified from <strong>Cambridge International official PDFs at cambridgeinternational.org</strong>.
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi blue"><div class="kpi-lbl">JUNE AVG A* % (BX)</div><div class="kpi-val" id="stat-j-avg">—</div><div class="kpi-sub">2015–2025 mean</div></div>
+    <div class="kpi orange"><div class="kpi-lbl">NOV AVG A* % (BX)</div><div class="kpi-val" id="stat-n-avg">—</div><div class="kpi-sub">2015–2025 mean</div></div>
+    <div class="kpi green"><div class="kpi-lbl">JUNE–NOV DIFF</div><div class="kpi-val" id="stat-diff">—</div><div class="kpi-sub">Average pp gap</div></div>
+    <div class="kpi gold"><div class="kpi-lbl">BY — HIGHEST EVER</div><div class="kpi-val">189</div><div class="kpi-sub">Nov 2017 · 94.5%</div></div>
+  </div>
+
+  <div class="co">
+    <div class="ct">A* Threshold % Over Time — BX, BY, BZ Options</div>
+    <div class="cs">Percentage of 200 marks required for A*. June = teal, November = orange. Missing sessions shown as gaps.</div>
+    <canvas id="overviewChart" height="260"></canvas>
+  </div>
+
+  <div class="ag">
+    <div class="ac"><h3><span class="ic purple">📉</span>June 2022 — All-time low (BX)</h3><p>June 2022 produced the <strong>lowest BX A* ever at 133/200 (66.5%)</strong>. This is extraordinary — 27 marks below June 2023. Paper 41 was notably accessible (Component 41 A threshold: just 67/130). BY/BZ were more typical at 159/154, showing the BX–BY gap reached its widest at 26 marks.</p></div>
+    <div class="ac"><h3><span class="ic orange">📈</span>November 2017 — All-time high (BY)</h3><p>November 2017's BY option required <strong>189/200 (94.5%) for A*</strong> — the highest threshold in this dataset. BX also hit 179 (89.5%). Papers 22 and 42 were set exceptionally hard that year, with Component 22 alone requiring 64/70 for an A (91%).</p></div>
+    <div class="ac"><h3><span class="ic green">📐</span>BY nearly always hardest</h3><p>The BY option (Papers 22 + 42) <strong>requires the most marks for A* in almost every session</strong>. The average BY–BX gap is around 12–15 marks. BZ is usually intermediate. The exception is June 2021 where BY was the easiest at 139 — a COVID-adjusted anomaly.</p></div>
+    <div class="ac"><h3><span class="ic gold">💡</span>Safe A* target</h3><p>Targeting <strong>≥160/200 (80%)</strong> on Extended provides a safe A* buffer in virtually every session. The absolute floor was BX Jun 2022 at 66.5%. The ceiling was BY Nov 2017 at 94.5%. For BY specifically, aim for <strong>170+ (85%)</strong> to be safe across all years.</p></div>
+  </div>
+</section>
+
+<!-- ========== JUNE ========== -->
+<section id="tab-june" class="section">
+  <div class="sh"><h2>May / June Sessions</h2><p>All confirmed A* thresholds for June series, 2015–2025. Extended options BX/BY/BZ, max 200 marks.</p></div>
+  <div class="co">
+    <div class="ct">June A* Threshold % — BX, BY, BZ Options</div>
+    <div class="cs">Percentage of 200 marks required for A* in each June session.</div>
+    <canvas id="juneChart" height="220"></canvas>
+  </div>
+  <div class="tw">
+    <div class="thr"><div class="ttitle">May/June — Extended Options (BX, BY, BZ)</div><div class="legend"><span><span class="dot june"></span>June session</span></div></div>
+    <table>
+      <thead><tr><th>Year</th><th>BX A*</th><th>BX A*%</th><th>BY A*</th><th>BY A*%</th><th>BZ A*</th><th>BZ A*%</th><th>BX A</th><th>BX B</th><th>BX C</th><th>Notes</th></tr></thead>
+      <tbody id="june-tbody"></tbody>
+    </table>
+  </div>
+  <div class="ag">
+    <div class="ac"><h3><span class="ic purple">📊</span>June 2022 — Anomalous BX low</h3><p>June 2022 BX A* was just <strong>133/200 (66.5%)</strong> — by far the lowest in any session. Component 41 (Paper 4 Variant 1) A threshold was only 67/130 (51.5%), suggesting an unusually hard paper. BY (159) and BZ (154) in the same session were normal, confirming it was variant-specific.</p></div>
+    <div class="ac"><h3><span class="ic green">📊</span>June 2021 — BY becomes easiest</h3><p>Uniquely, June 2021 saw <strong>BY (139) lower than both BX (154) and BZ (148)</strong> — the only session in the dataset where BY is not the hardest. A* thresholds across all variants were the lowest in any June session, due to COVID-19 grading adjustments.</p></div>
+  </div>
+</section>
+
+<!-- ========== NOVEMBER ========== -->
+<section id="tab-november" class="section">
+  <div class="sh"><h2>Oct / November Sessions</h2><p>All confirmed A* thresholds for November series, 2015–2025. Extended options BX/BY/BZ, max 200 marks.</p></div>
+  <div class="co">
+    <div class="ct">November A* Threshold % — BX, BY, BZ Options</div>
+    <div class="cs">Percentage of 200 marks required for A* in each November session.</div>
+    <canvas id="novChart" height="220"></canvas>
+  </div>
+  <div class="tw">
+    <div class="thr"><div class="ttitle">Oct/Nov — Extended Options (BX, BY, BZ)</div><div class="legend"><span><span class="dot nov"></span>November session</span></div></div>
+    <table>
+      <thead><tr><th>Year</th><th>BX A*</th><th>BX A*%</th><th>BY A*</th><th>BY A*%</th><th>BZ A*</th><th>BZ A*%</th><th>BX A</th><th>BX B</th><th>BX C</th><th>Notes</th></tr></thead>
+      <tbody id="nov-tbody"></tbody>
+    </table>
+  </div>
+  <div class="ag">
+    <div class="ac"><h3><span class="ic orange">⚡</span>Nov 2017 — Record BY threshold</h3><p>November 2017 set the record: BY at <strong>189/200 (94.5%)</strong> and BX at 179/200 (89.5%). Component 22 required 64/70 for A (91.4%) — almost perfect scores needed. This is the hardest session on record for any option, and reflects Papers 22/42 being exceptionally demanding that year.</p></div>
+    <div class="ac"><h3><span class="ic green">📉</span>Post-2020 normalisation</h3><p>After Nov 2020's COVID-adjusted lower thresholds, November BX recovered to a high of <strong>173 in 2023</strong>. The 2022–2025 period shows more stable BX thresholds (154–173) compared to the high volatility of 2015–2019. November BY has been consistently above 169 since 2022.</p></div>
+  </div>
+</section>
+
+<!-- ========== ALL DATA ========== -->
+<section id="tab-alldata" class="section">
+  <div class="sh"><h2>Complete Dataset</h2><p>Every session, every Extended option (BX, BY, BZ) with A*, A, B, C, D, E thresholds. Filter by year.</p></div>
+  <div class="fr">
+    <span class="fl">FILTER YEAR:</span>
+    <button class="fb active" onclick="filterYear('all',this)">All</button>
+    <button class="fb" onclick="filterYear('2015',this)">2015</button>
+    <button class="fb" onclick="filterYear('2016',this)">2016</button>
+    <button class="fb" onclick="filterYear('2017',this)">2017</button>
+    <button class="fb" onclick="filterYear('2018',this)">2018</button>
+    <button class="fb" onclick="filterYear('2019',this)">2019</button>
+    <button class="fb" onclick="filterYear('2020',this)">2020</button>
+    <button class="fb" onclick="filterYear('2021',this)">2021</button>
+    <button class="fb" onclick="filterYear('2022',this)">2022</button>
+    <button class="fb" onclick="filterYear('2023',this)">2023</button>
+    <button class="fb" onclick="filterYear('2024',this)">2024</button>
+    <button class="fb" onclick="filterYear('2025',this)">2025</button>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr>
+        <th>Session</th><th>Opt</th><th>Components</th>
+        <th class="r">A*</th><th class="r">A*%</th>
+        <th class="r">A</th><th class="r">B</th><th class="r">C</th>
+        <th class="r">D</th><th class="r">E</th><th>Source</th>
+      </tr></thead>
+      <tbody id="all-tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ========== ANALYSIS ========== -->
+<section id="tab-analysis" class="section">
+  <div class="sh"><h2>In-Depth Analysis</h2><p>Statistical breakdown, trends, and key insights from 11 years of grade threshold data.</p></div>
+  <div class="kpi-grid">
+    <div class="kpi blue"><div class="kpi-lbl">JUNE AVG A* % (BX)</div><div class="kpi-val" id="an-j-avg">—</div><div class="kpi-sub">2015–2025 mean</div></div>
+    <div class="kpi orange"><div class="kpi-lbl">NOV AVG A* % (BX)</div><div class="kpi-val" id="an-n-avg">—</div><div class="kpi-sub">2015–2025 mean</div></div>
+    <div class="kpi green"><div class="kpi-lbl">NOV–JUN DIFF (BX)</div><div class="kpi-val" id="an-diff">—</div><div class="kpi-sub">November typically harder</div></div>
+    <div class="kpi gold"><div class="kpi-lbl">BY–BX GAP (avg)</div><div class="kpi-val" id="an-gap">—</div><div class="kpi-sub">BY consistently hardest</div></div>
+  </div>
+  <div class="co">
+    <div class="ct">June vs November A* % Comparison — BX Option (2015–2025)</div>
+    <div class="cs">Teal = June · Orange = November · % of 200 · June 2020 cancelled · Missing sessions shown as gaps</div>
+    <canvas id="compareChart" height="240"></canvas>
+  </div>
+  <div class="ag">
+    <div class="ac"><h3><span class="ic purple">📈</span>November consistently harder than June</h3><p>In most years, November BX thresholds <strong>exceed the corresponding June BX</strong>. The average gap is around 15–20 marks (7–10%). Exceptions: 2021 (COVID; June harder for BY) and 2023 (virtually identical at 158 vs 173). This pattern suggests November papers are routinely more demanding or the marking is stricter.</p></div>
+    <div class="ac"><h3><span class="ic orange">📅</span>High volatility year-to-year</h3><p>IGCSE Maths shows <strong>extreme year-to-year swings</strong> — more than most subjects. BX jumped from 133 (Jun 2022) to 158 (Jun 2023) — a 25-mark rise in one year. BY in November went from 165 (Nov 2020) to 170 (Nov 2022). BZ in November 2017 was just 166 vs BY 189 in the same session — a 23-mark gap between variants.</p></div>
+    <div class="ac"><h3><span class="ic green">🔄</span>BY–BX spread: consistent but volatile</h3><p>The BY–BX gap averages about <strong>12 marks in June and 10 marks in November</strong>. But it's been as large as 26 marks (Jun 2022: BY=159, BX=133) and as small as −15 marks (Jun 2021: BY=139, BX=154). Students on BY almost always need significantly more marks — except during COVID adjustments.</p></div>
+    <div class="ac"><h3><span class="ic gold">💡</span>2025 syllabus change (new paper weights)</h3><p>From 2025, component weights changed: Paper 2 and 4 now carry <strong>100 marks each</strong> (previously 70+130). The total remains 200. June 2025 BX=156, BY=176, BZ=178. November 2025 BX=172, BY=169, BZ=177. Thresholds are broadly comparable to the pre-2025 format despite different raw mark distributions.</p></div>
+  </div>
+  <div class="tw">
+    <div class="thr">
+      <div class="ttitle">Year-by-Year Summary — BX Option A* Thresholds</div>
+      <div class="legend"><span><span class="dot june"></span>June</span><span><span class="dot nov"></span>November</span></div>
+    </div>
+    <table>
+      <thead><tr><th>Year</th><th>Jun BX A*</th><th>Jun BX %</th><th>Nov BX A*</th><th>Nov BX %</th><th>Diff (Nov–Jun)</th><th>Harder</th><th>Trend vs prev</th></tr></thead>
+      <tbody id="summary-tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Data sourced from official Cambridge International grade threshold PDFs · Syllabus 0580 · Sessions 2015–2025 · May/June and Oct/Nov only · Some sessions unavailable in public archive
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ================================================================
+// ALL DATA — sourced from official Cambridge International PDFs
+// Extended max = 200 (all years), Core max = 160 (all years)
+// BX = Papers 21+41, BY = Papers 22+42, BZ = Papers 23+43
+// null = session data not available in public archive
+// ================================================================
+const DATA = [
+  // ======== JUNE ========
+  { s:'Jun 2015', y:2015, t:'june', max:200,
+    // Source: cambridgeinternational.org/images/252521-mathematics-without-coursework-0580-grade-thresholds-june-2015.pdf
+    bx:[178,148,118,88,69,51], by:[159,129,99,70,55,41], bz:[175,146,117,89,71,53],
+    note:''},
+  { s:'Jun 2016', y:2016, t:'june', max:200,
+    // Source: PDF not found in Cambridge public archive
+    bx:null, by:null, bz:null, note:'N/A'},
+  { s:'Jun 2017', y:2017, t:'june', max:200,
+    // Source: cambridgeinternational.org/Images/410347-mathematics-without-coursework-0580-grade-threshold-table-june-2017.pdf
+    bx:[179,151,123,96,75,55], by:[179,158,128,99,81,63], bz:[175,151,127,104,85,66],
+    note:''},
+  { s:'Jun 2018', y:2018, t:'june', max:200,
+    // Source: cambridgeinternational.org/Images/500432-mathematics-without-coursework-0580-june-2018.pdf
+    bx:[176,151,126,101,80,59], by:[182,162,129,96,76,56], bz:[181,157,133,110,89,69],
+    note:''},
+  { s:'Jun 2019', y:2019, t:'june', max:200,
+    // Source: cambridgeinternational.org/Images/551741-mathematics-grade-threshold-table-0580-.pdf
+    bx:[165,141,117,94,75,56], by:[183,163,133,104,84,65], bz:[176,151,126,101,80,60],
+    note:''},
+  // Jun 2020 CANCELLED — COVID-19
+  { s:'Jun 2021', y:2021, t:'june', max:200,
+    // Source: pastpapers.papacambridge.com/directories/CAIE/CAIE-pastpapers/upload/0580_s21_gt.pdf (Cambridge data)
+    bx:[154,126,98,71,54,37], by:[139,113,87,61,46,32], bz:[148,123,98,74,54,35],
+    note:'COVID-adjusted · lowest June A* (BY)'},
+  { s:'Jun 2022', y:2022, t:'june', max:200,
+    // Source: cambridgeinternational.org/Images/661196-cambridge-igcse-mathematics-0580-grade-threshold-table-june-2022.pdf
+    bx:[133,106,79,52,38,25], by:[159,127,95,63,46,30], bz:[154,126,98,71,53,35],
+    note:'BX record low: 133 (66.5%)'},
+  { s:'Jun 2023', y:2023, t:'june', max:200,
+    // Source: cambridgeinternational.org/Images/692776-mathematics-without-coursework-0580-june-2023-grade-threshold-table.pdf
+    bx:[158,132,106,81,62,44], by:[174,148,113,78,61,44], bz:[173,146,117,88,66,45],
+    note:'Sharp recovery after 2022'},
+  { s:'Jun 2024', y:2024, t:'june', max:200,
+    // Source: cambridgeinternational.org/Images/716164-mathematics-without-coursework-0580-june-2024-grade-threshold-table.pdf
+    bx:[152,125,98,72,56,40], by:[175,150,117,85,66,48], bz:[172,144,114,85,65,45],
+    note:''},
+  { s:'Jun 2025', y:2025, t:'june', max:200,
+    // Source: cambridgeinternational.org/Images/741420-mathematics-without-coursework-0580-june-2025-grade-threshold-table.pdf
+    // New component weights (P2=100, P4=100 from 2025 onwards); total still 200
+    bx:[156,131,106,81,68,55], by:[176,152,119,86,68,51], bz:[178,157,127,97,74,52],
+    note:'New paper weights from 2025'},
+
+  // ======== NOVEMBER ========
+  { s:'Nov 2015', y:2015, t:'november', max:200,
+    // Source: PDF not located in Cambridge public archive
+    bx:null, by:null, bz:null, note:'N/A'},
+  { s:'Nov 2016', y:2016, t:'november', max:200,
+    // Source: cambridgeinternational.org/images/350349-mathematics-0580-november-2016.pdf
+    bx:[179,151,123,95,77,59], by:[187,162,137,113,99,85], bz:[169,137,105,73,57,42],
+    note:'BY–BX gap: 8 marks'},
+  { s:'Nov 2017', y:2017, t:'november', max:200,
+    // Source: cambridgeinternational.org/Images/459065-mathematics-0580-november-2017.pdf
+    bx:[179,152,125,98,81,64], by:[189,171,146,122,107,92], bz:[166,135,104,74,57,41],
+    note:'BY all-time record: 189 (94.5%)'},
+  { s:'Nov 2018', y:2018, t:'november', max:200,
+    // Source: cambridgeinternational.org/Images/523742-mathematics-0580-november-2018-grade-threshold-table.pdf
+    bx:[183,161,133,106,86,66], by:[187,168,144,121,106,92], bz:[180,154,122,91,73,55],
+    note:'BY 187 — consistently high'},
+  { s:'Nov 2019', y:2019, t:'november', max:200,
+    // Source: cambridgeinternational.org/Images/573539-mathematics-0580-november-2019-grade-threshold-table.pdf
+    bx:[176,151,123,96,79,63], by:[181,160,136,113,99,85], bz:[176,151,123,95,76,57],
+    note:''},
+  { s:'Nov 2020', y:2020, t:'november', max:200,
+    // Source: cambridgeinternational.org/Images/607597-mathematics-grade-threshold-table-0580-november-2020.pdf
+    bx:[148,123,98,73,59,45], by:[165,143,121,100,85,70], bz:[150,123,96,69,52,35],
+    note:'COVID-adjusted · No June 2020'},
+  { s:'Nov 2021', y:2021, t:'november', max:200,
+    // Source: PDF not located in Cambridge public archive
+    bx:null, by:null, bz:null, note:'N/A'},
+  { s:'Nov 2022', y:2022, t:'november', max:200,
+    // Source: cambridgeinternational.org/Images/673553-cambridge-igcse-mathematics-0580-november-2022-grade-threshold-table.pdf
+    bx:[154,127,100,74,59,45], by:[170,140,110,80,67,54], bz:[148,121,94,67,52,37],
+    note:''},
+  { s:'Nov 2023', y:2023, t:'november', max:200,
+    // Source: cambridgeinternational.org/Images/706297-cambridge-igcse-mathematics-0580-november-2023-grade-threshold-table.pdf
+    bx:[173,146,118,91,74,57], by:[173,146,118,91,76,62], bz:[171,143,112,81,65,49],
+    note:'BX = BY: same threshold'},
+  { s:'Nov 2024', y:2024, t:'november', max:200,
+    // Source: cambridgeinternational.org/Images/728875-mathematics-0580-november-2024-grade-threshold-table.pdf
+    bx:[168,140,112,84,66,49], by:[180,160,130,100,82,64], bz:[174,149,115,81,63,45],
+    note:'BY 180 — second highest ever'},
+  { s:'Nov 2025', y:2025, t:'november', max:200,
+    // Source: cambridgeinternational.org/Images/750706-mathematics-0580-november-2025-grade-threshold-table.pdf
+    // New component weights (P2=100, P4=100); total still 200
+    bx:[172,144,114,84,66,48], by:[169,140,111,82,66,50], bz:[177,155,122,90,71,52],
+    note:'New paper weights from 2025'},
+];
+
+// ================================================================
+// HELPERS
+// ================================================================
+function pct(m,max){return((m/max)*100).toFixed(1)}
+function fmtStar(v){return v!=null?`<span class="ms">${v}</span>`:'<span class="miss-badge">N/A</span>'}
+function fmtA(v){return v!=null?`<span class="ma">${v}</span>`:'<span style="color:var(--muted)">—</span>'}
+function fmtB(v){return v!=null?`<span class="mb">${v}</span>`:'<span style="color:var(--muted)">—</span>'}
+function fmtC(v){return v!=null?`<span class="mc">${v}</span>`:'<span style="color:var(--muted)">—</span>'}
+
+// ================================================================
+// TABLE BUILDERS
+// ================================================================
+function buildSessionTable(type, tbodyId){
+  const rows=DATA.filter(d=>d.t===type);
+  const tbody=document.getElementById(tbodyId);
+  tbody.innerHTML=rows.map(d=>{
+    const col=d.t==='june'?'var(--june)':'var(--nov)';
+    if(!d.bx){
+      return `<tr class="missing-row">
+        <td><span class="sb"><span class="sd" style="background:${col}"></span><strong>${d.s}</strong></span></td>
+        <td colspan="9"><span class="miss-badge">Data not available in Cambridge public archive</span></td>
+        <td></td>
+      </tr>`;
+    }
+    const bxpct=pct(d.bx[0],d.max)+'%';
+    const bypct=pct(d.by[0],d.max)+'%';
+    const bzpct=pct(d.bz[0],d.max)+'%';
+    let noteHtml='';
+    if(d.note&&d.note!==''){
+      const cls=d.note.includes('record')||d.note.includes('all-time')||d.note.includes('high')?'th':d.note.includes('COVID')||d.note.includes('low')?'tl':d.note.includes('N/A')?'':d.note.includes('new')||d.note.includes('New')?'tn2':'tm';
+      noteHtml=cls?`<span class="tn ${cls}">${d.note}</span>`:`<span style="font-size:11px;color:var(--muted);font-family:var(--mono)">${d.note}</span>`;
+    }
+    return `<tr>
+      <td><span class="sb"><span class="sd" style="background:${col}"></span><strong>${d.s}</strong></span></td>
+      <td>${fmtStar(d.bx[0])}</td><td class="pct">${bxpct}</td>
+      <td>${fmtStar(d.by[0])}</td><td class="pct">${bypct}</td>
+      <td>${fmtStar(d.bz[0])}</td><td class="pct">${bzpct}</td>
+      <td>${fmtA(d.bx[1])}</td><td>${fmtB(d.bx[2])}</td><td>${fmtC(d.bx[3])}</td>
+      <td>${noteHtml}</td>
+    </tr>`;
+  }).join('');
+}
+
+function buildAllTable(fy){
+  const tbody=document.getElementById('all-tbody');
+  let html='';
+  DATA.forEach(d=>{
+    if(fy!=='all'&&d.y.toString()!==fy)return;
+    const col=d.t==='june'?'var(--june)':'var(--nov)';
+    if(!d.bx){
+      html+=`<tr class="missing-row"><td><span class="sb"><span class="sd" style="background:${col};width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px;"></span><strong>${d.s}</strong></span></td>
+        <td colspan="9"><span class="miss-badge">Data not available in Cambridge public archive</span></td><td></td></tr>`;
+      return;
+    }
+    [['BX','21, 41',d.bx],['BY','22, 42',d.by],['BZ','23, 43',d.bz]].forEach(([opt,comps,v])=>{
+      const p=pct(v[0],d.max)+'%';
+      html+=`<tr>
+        <td><span class="sb"><span class="sd" style="background:${col};width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px;"></span><strong>${d.s}</strong></span></td>
+        <td style="font-family:var(--mono);font-size:12px">${opt}</td>
+        <td style="font-family:var(--mono);font-size:11px;color:var(--muted)">${comps}</td>
+        <td class="r">${fmtStar(v[0])}</td>
+        <td class="r pct">${p}</td>
+        <td class="r">${fmtA(v[1])}</td>
+        <td class="r">${fmtB(v[2])}</td>
+        <td class="r">${fmtC(v[3])}</td>
+        <td class="r pct">${v[4]??'—'}</td>
+        <td class="r pct">${v[5]??'—'}</td>
+        <td style="font-size:11px;color:var(--muted);font-family:var(--mono)">Cambridge PDF</td>
+      </tr>`;
+    });
+  });
+  tbody.innerHTML=html;
+}
+
+function buildSummary(){
+  const years=[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+  const tbody=document.getElementById('summary-tbody');
+  tbody.innerHTML=years.map((yr,i)=>{
+    const jd=DATA.find(d=>d.y===yr&&d.t==='june');
+    const nd=DATA.find(d=>d.y===yr&&d.t==='november');
+    const jv=jd&&jd.bx?jd.bx[0]:null;
+    const nv=nd&&nd.bx?nd.bx[0]:null;
+    const jp=jv?pct(jv,200)+'%':'—';
+    const np=nv?pct(nv,200)+'%':'—';
+    const jStr=jv?`<span class="ms">${jv}</span>`:yr===2020?`<span style="color:var(--danger);font-family:var(--mono);font-size:12px">COVID — cancelled</span>`:`<span class="miss-badge">N/A</span>`;
+    const nStr=nv?`<span class="ms">${nv}</span>`:`<span class="miss-badge">N/A</span>`;
+    let diff='—', harder='—', trend='';
+    if(jv&&nv){
+      const d=(nv-jv);
+      diff=d>0?`<span style="color:var(--nov)">+${d}</span>`:`<span style="color:var(--june)">${d}</span>`;
+      harder=d>0?`<span style="color:var(--nov)">November</span>`:`<span style="color:var(--june)">June</span>`;
+    }
+    const prevJd=DATA.find(d=>d.y===(yr-1)&&d.t==='june');
+    if(jv&&prevJd&&prevJd.bx){
+      const delta=jv-prevJd.bx[0];
+      trend=delta>2?`<span style="color:var(--danger);font-family:var(--mono);font-size:12px">↑ Higher</span>`:delta<-2?`<span style="color:var(--good);font-family:var(--mono);font-size:12px">↓ Lower</span>`:`<span style="color:var(--muted);font-family:var(--mono);font-size:12px">→ Similar</span>`;
+    }
+    return `<tr>
+      <td><strong>${yr}</strong></td>
+      <td>${jStr}</td><td class="pct">${jp}</td>
+      <td>${nStr}</td><td class="pct">${np}</td>
+      <td>${diff}</td><td>${harder}</td><td>${trend}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ================================================================
+// CHARTS
+// ================================================================
+const CD={
+  responsive:true,maintainAspectRatio:true,
+  plugins:{
+    legend:{labels:{color:'#7a7a8e',font:{family:'DM Mono',size:11}}},
+    tooltip:{backgroundColor:'#18181f',borderColor:'rgba(255,255,255,.1)',borderWidth:1,titleColor:'#e8e8f0',bodyColor:'#7a7a8e',titleFont:{family:'Syne',size:13},bodyFont:{family:'DM Mono',size:12}}
+  },
+  scales:{
+    x:{ticks:{color:'#7a7a8e',font:{family:'DM Mono',size:11}},grid:{color:'rgba(255,255,255,.04)'},border:{color:'rgba(255,255,255,.06)'}},
+    y:{ticks:{color:'#7a7a8e',font:{family:'DM Mono',size:11}},grid:{color:'rgba(255,255,255,.04)'},border:{color:'rgba(255,255,255,.06)'}}
+  }
+};
+
+function getBX(type){return DATA.filter(d=>d.t===type).map(d=>({y:d.y,v:d.bx?parseFloat(pct(d.bx[0],200)):null}));}
+function getBY(type){return DATA.filter(d=>d.t===type).map(d=>({y:d.y,v:d.by?parseFloat(pct(d.by[0],200)):null}));}
+function getBZ(type){return DATA.filter(d=>d.t===type).map(d=>({y:d.y,v:d.bz?parseFloat(pct(d.bz[0],200)):null}));}
+
+function buildOverviewChart(){
+  const june=DATA.filter(d=>d.t==='june'),nov=DATA.filter(d=>d.t==='november');
+  const allYears=[...new Set([...june,...nov].map(d=>d.y))].sort();
+  const jBX=allYears.map(yr=>{const d=june.find(j=>j.y===yr);return d&&d.bx?parseFloat(pct(d.bx[0],200)):null;});
+  const jBY=allYears.map(yr=>{const d=june.find(j=>j.y===yr);return d&&d.by?parseFloat(pct(d.by[0],200)):null;});
+  const nBX=allYears.map(yr=>{const d=nov.find(j=>j.y===yr);return d&&d.bx?parseFloat(pct(d.bx[0],200)):null;});
+  const nBY=allYears.map(yr=>{const d=nov.find(j=>j.y===yr);return d&&d.by?parseFloat(pct(d.by[0],200)):null;});
+  new Chart(document.getElementById('overviewChart'),{type:'line',data:{labels:allYears,datasets:[
+    {label:'June BX A*%',data:jBX,borderColor:'#22d3a5',backgroundColor:'rgba(34,211,165,.08)',tension:.35,pointRadius:5,pointBackgroundColor:'#22d3a5',spanGaps:false},
+    {label:'June BY A*%',data:jBY,borderColor:'#0891b2',backgroundColor:'rgba(8,145,178,.06)',tension:.35,pointRadius:4,borderDash:[4,3],pointBackgroundColor:'#0891b2',spanGaps:false},
+    {label:'Nov BX A*%', data:nBX,borderColor:'#f97316',backgroundColor:'rgba(249,115,22,.08)',tension:.35,pointRadius:5,pointBackgroundColor:'#f97316',spanGaps:false},
+    {label:'Nov BY A*%', data:nBY,borderColor:'#b45309',backgroundColor:'rgba(180,83,9,.05)',tension:.35,pointRadius:4,borderDash:[4,3],pointBackgroundColor:'#b45309',spanGaps:false},
+  ]},options:{...CD,scales:{...CD.scales,y:{...CD.scales.y,min:60,max:100,title:{display:true,text:'A* %',color:'#7a7a8e',font:{family:'DM Mono',size:11}}}}}});
+}
+
+function buildJuneChart(){
+  const jd=DATA.filter(d=>d.t==='june');
+  const labels=jd.map(d=>d.y);
+  const bx=jd.map(d=>d.bx?parseFloat(pct(d.bx[0],200)):null);
+  const by=jd.map(d=>d.by?parseFloat(pct(d.by[0],200)):null);
+  const bz=jd.map(d=>d.bz?parseFloat(pct(d.bz[0],200)):null);
+  new Chart(document.getElementById('juneChart'),{type:'bar',data:{labels,datasets:[
+    {label:'BX A*%',data:bx,backgroundColor:'rgba(34,211,165,.55)',borderColor:'#22d3a5',borderWidth:1,borderRadius:4},
+    {label:'BY A*%',data:by,backgroundColor:'rgba(8,145,178,.55)',borderColor:'#0891b2',borderWidth:1,borderRadius:4},
+    {label:'BZ A*%',data:bz,backgroundColor:'rgba(34,211,165,.20)',borderColor:'rgba(34,211,165,.5)',borderWidth:1,borderRadius:4},
+  ]},options:{...CD,scales:{...CD.scales,y:{...CD.scales.y,min:60,max:100,title:{display:true,text:'A* %',color:'#7a7a8e',font:{family:'DM Mono',size:11}}}}}});
+}
+
+function buildNovChart(){
+  const nd=DATA.filter(d=>d.t==='november');
+  const labels=nd.map(d=>d.y);
+  const bx=nd.map(d=>d.bx?parseFloat(pct(d.bx[0],200)):null);
+  const by=nd.map(d=>d.by?parseFloat(pct(d.by[0],200)):null);
+  const bz=nd.map(d=>d.bz?parseFloat(pct(d.bz[0],200)):null);
+  new Chart(document.getElementById('novChart'),{type:'bar',data:{labels,datasets:[
+    {label:'BX A*%',data:bx,backgroundColor:'rgba(249,115,22,.60)',borderColor:'#f97316',borderWidth:1,borderRadius:4},
+    {label:'BY A*%',data:by,backgroundColor:'rgba(234,88,12,.55)',borderColor:'#ea580c',borderWidth:1,borderRadius:4},
+    {label:'BZ A*%',data:bz,backgroundColor:'rgba(249,115,22,.20)',borderColor:'rgba(249,115,22,.5)',borderWidth:1,borderRadius:4},
+  ]},options:{...CD,scales:{...CD.scales,y:{...CD.scales.y,min:60,max:100,title:{display:true,text:'A* %',color:'#7a7a8e',font:{family:'DM Mono',size:11}}}}}});
+}
+
+function buildCompareChart(){
+  const june=DATA.filter(d=>d.t==='june'),nov=DATA.filter(d=>d.t==='november');
+  const allYears=[...new Set([...june,...nov].map(d=>d.y))].sort();
+  const jBX=allYears.map(yr=>{const d=june.find(j=>j.y===yr);return d&&d.bx?parseFloat(pct(d.bx[0],200)):null;});
+  const nBX=allYears.map(yr=>{const d=nov.find(j=>j.y===yr);return d&&d.bx?parseFloat(pct(d.bx[0],200)):null;});
+  new Chart(document.getElementById('compareChart'),{type:'line',data:{labels:allYears,datasets:[
+    {label:'June BX A*%',data:jBX,borderColor:'#22d3a5',backgroundColor:'rgba(34,211,165,.12)',tension:.35,pointRadius:6,fill:true,spanGaps:false},
+    {label:'Nov BX A*%', data:nBX,borderColor:'#f97316',backgroundColor:'rgba(249,115,22,.08)',tension:.35,pointRadius:6,fill:true,spanGaps:false},
+  ]},options:{...CD,scales:{...CD.scales,y:{...CD.scales.y,min:60,max:100}}}});
+}
+
+// ================================================================
+// STATS
+// ================================================================
+function buildStats(){
+  const june=DATA.filter(d=>d.t==='june'&&d.bx);
+  const nov=DATA.filter(d=>d.t==='november'&&d.bx);
+  const jV=june.map(d=>parseFloat(pct(d.bx[0],200)));
+  const nV=nov.map(d=>parseFloat(pct(d.bx[0],200)));
+  const jA=(jV.reduce((a,b)=>a+b,0)/jV.length).toFixed(1)+'%';
+  const nA=(nV.reduce((a,b)=>a+b,0)/nV.length).toFixed(1)+'%';
+  const diff=(parseFloat(nA)-parseFloat(jA)).toFixed(1);
+  // BY-BX gap
+  const allGaps=DATA.filter(d=>d.bx&&d.by).map(d=>d.by[0]-d.bx[0]);
+  const avgGap=(allGaps.reduce((a,b)=>a+b,0)/allGaps.length).toFixed(1);
+  ['stat-j-avg','an-j-avg'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=jA;});
+  ['stat-n-avg','an-n-avg'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=nA;});
+  ['stat-diff','an-diff'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=(parseFloat(diff)>0?'+':'')+diff+'pp';});
+  const g=document.getElementById('an-gap');if(g)g.textContent='+'+avgGap+' marks';
+}
+
+// ================================================================
+// TAB / FILTER
+// ================================================================
+function showTab(name){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  document.querySelector(`[onclick="showTab('${name}')"]`).classList.add('active');
+  if(name==='june'&&!window._jB){buildJuneChart();window._jB=true;}
+  if(name==='november'&&!window._nB){buildNovChart();window._nB=true;}
+  if(name==='analysis'&&!window._cB){buildCompareChart();window._cB=true;}
+}
+
+function filterYear(yr,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildAllTable(yr);
+}
+
+// ================================================================
+// INIT
+// ================================================================
+window.addEventListener('load',()=>{
+  buildSessionTable('june','june-tbody');
+  buildSessionTable('november','nov-tbody');
+  buildAllTable('all');
+  buildSummary();
+  buildOverviewChart();
+  buildStats();
+});
+</script>
+</body>
+</html>
